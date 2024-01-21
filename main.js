@@ -1,9 +1,53 @@
 const form = document.querySelector(".search-form");
 const input = document.querySelector(".search");
 const result = document.querySelector(".results-wrapper");
-console.log(input);
-console.log(form);
-console.log(result);
+const countryList = document.querySelector(".list-country")
+const categoryList = document.querySelector(".list-category")
+
+// =======================Country List================================
+function renderCountryList() {
+    const renderCountryListItem = (itemData) => {
+        return `<li class="meal-country-item list">${itemData.strArea}</li>`;
+    }
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=').then((response) => {
+        return response.json()
+    }).then((data) => {
+        let list = '';
+        for (let meal of data.meals) {
+           
+            list += renderCountryListItem(meal);
+            countryList.innerHTML = list;
+            }
+        
+        }).catch(err => {
+            console.error(err);
+            alert("Something went wrong!")
+        });  
+}
+
+renderCountryList()
+
+// ==================== CATEGORY LIST ===============
+function renderCategoryList () {
+    const renderCategoryListItem = (itemData) => {
+    return `<li class="meal-category-item list">${itemData.strCategory}</li>`;
+    }
+fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=').then((response) => {
+            return response.json()
+        }).then((data) => {
+            let list = '';
+            for (let meal of data.meals) {
+                list += renderCategoryListItem(meal)
+            }
+            categoryList.innerHTML = list;
+        }).catch(err => {
+            console.error(err);
+            alert("Something went wrong!")
+        });  
+}
+
+renderCategoryList()
+
 
 function app() {
 
@@ -35,6 +79,8 @@ function app() {
 }
 
 app()
+
+
 
 
 

@@ -14,8 +14,11 @@ p {
     margin-block-end: 0px;
     margin-block-start: 0px;
 }
-
+.list {
+    list-style: none;
+}
 .search-form {
+    padding-top: 20px;
     width: 100%;
     height: 60px;
     display: flex;
@@ -64,6 +67,10 @@ input {
     outline: none;
 }
 
+
+.main-page {
+    display: flex;
+}
 .item-wrapper {
     border-radius: 7px;
     padding: 20px;
